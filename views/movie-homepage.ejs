@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <title>Movie Buzzz</title>
+</head>
+<body>
+    <h1>Movie Buzzz</h1>
+
+    
+    <table id="movieTable">
+        <thead>
+            <tr>
+                <th>Movie Name</th>
+                <th>Language</th>
+                <th>Ratings</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i<movies.length; i++) {%>
+                <tr>
+                    <td>
+                        <%= movies[i].name %>
+                    </td>
+                    <td>
+                        <%= movies[i].language %>
+                    </td>
+                    <td>
+                        <%= movies[i].rate %>
+                    </td>
+                    <td>
+                        <%= movies[i].type %>
+                    </td>
+                    <td>
+                        <%= movies[i].status %>
+                    </td>
+                    <td>
+                        <button onclick="sendMail('<%= i %>')">send email</button>
+                    </td>
+                    
+                </tr>
+            <% } %>
+           
+        </tbody>
+    </table>
+    <script>
+        let movieList = <%- JSON.stringify(movies) %>;
+    </script>
+
+    <hr/>   
+    <h2>Add Movie details</h2>
+    <form action="/postMovies" method="POST">
+        <label for="name"> Movie Name:</label><br>
+        <input type="text" name="name" ><br>
+        <label for="language"> Language:</label><br>
+        <input type="text"  name="language" ><br><br>
+        <label for="rate"> Rating:</label><br>
+        <input type="text"  name="rate" ><br><br>
+        <label for="type"> Type:</label><br>
+        <input type="text"  name="type" ><br><br>
+      
+        <input type="submit" value="Submit">
+      </form> 
+    
+      <hr/>
+
+
+    <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="../public/script.js"></script>
+</body>
+</html>
